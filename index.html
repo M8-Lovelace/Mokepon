@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" src="css/style.css" type="text/css">
+  <title>Pokemon</title>
+  <script src="./js/app.js"></script>
+</head>
+<body>
+  <h1>¡POKEMON!🔥💧🌳</h1>
+
+  <!-- Mascotas
+    Squirtle -> Agua💧
+    Chikorita -> Planta🌳
+    Charmander -> Fuego🔥
+    Volcanion -> Agua💧 y Fuego🔥
+    Lotad -> Agua💧 y Planta🌳
+    Pydos -> Planta🌳 y Fuego🔥 -->
+
+  <section id="seleccionar-mascota">
+    <h2>Elige una mascota:</h2>
+
+    <label for="hipodoge">Hipodoge</label>
+    <input type="radio" name="mascota" id="hipodoge"/>
+
+    <label for="capipepo">Capipepo</label>
+    <input type="radio" name="mascota" id="capipepo"/>
+
+    <label for="ratigueya">Ratigueya</label>
+    <input type="radio" name="mascota" id="ratigueya"/>
+
+    <label for="langostelvis">Langostelvis</label>
+    <input type="radio" name="mascota" id="langostelvis"/>
+
+    <label for="tucapalma">Tucapalma</label>
+    <input type="radio" name="mascota" id="tucapalma"/>
+
+    <br><br>
+    <button id="boton-mascota">Seleccionar</button>
+  </section>
+
+  <section id="seleccionar-ataque">
+    <h2>Elige tu ataque:</h2>
+
+    <p>Tu mascota <span id="mascota-jugador"></span> tiene <span>3</span> vidas</p>
+    <p>La mascota <span id="mascota-enemigo"></span> del enemigo tiene <span>3</span> vidas</p>
+
+    <p>
+      <button id="boton-fuego">Fuego 🔥</button>
+      <button id="boton-agua">Agua 💧</button>
+      <button id="boton-tierra">Tierra 🌳</button>
+    </p>
+  </section>
+
+  <section id="mensajes">
+  </section>
+
+  <section id="reiniciar">
+    <button id="boton-reiniciar">Reiniciar</button>
+  </section>
+  
+</body>
+</html>
