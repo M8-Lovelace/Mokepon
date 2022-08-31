@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" src="css/style.css" type="text/css">
-  <title>Pokemon</title>
+  <link rel="stylesheet" href="./css/style.css" type="text/css">
+  <title>Mokemon</title>
   <script src="./js/app.js"></script>
 </head>
 <body>
-  <h1>¡POKEMON!🔥💧🌳</h1>
+  <h1 class="titulo">¡MOKEMON!🔥💧🌳</h1>
 
   <!-- Mascotas
     Squirtle -> Agua💧
@@ -37,15 +37,14 @@
     <label for="tucapalma">Tucapalma</label>
     <input type="radio" name="mascota" id="tucapalma"/>
 
-    <br><br>
     <button id="boton-mascota">Seleccionar</button>
   </section>
 
   <section id="seleccionar-ataque">
     <h2>Elige tu ataque:</h2>
 
-    <p>Tu mascota <span id="mascota-jugador"></span> tiene <span>3</span> vidas</p>
-    <p>La mascota <span id="mascota-enemigo"></span> del enemigo tiene <span>3</span> vidas</p>
+    <p>Tu mascota <span id="mascota-jugador"></span> tiene <span id="vidas-jugador">3</span> vidas</p>
+    <p>La mascota <span id="mascota-enemigo"></span> del enemigo tiene <span id="vidas-enemigo">3</span> vidas</p>
 
     <p>
       <button id="boton-fuego">Fuego 🔥</button>
@@ -57,6 +56,7 @@
   <section id="mensajes">
   </section>
 
+  <br>
   <section id="reiniciar">
     <button id="boton-reiniciar">Reiniciar</button>
   </section>
