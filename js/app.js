@@ -15,6 +15,9 @@ function iniciarJuego(){
     let sectionReiniciar = document.getElementById('boton-reiniciar')
     sectionReiniciar.style.display = 'none'
 
+    let sectionmensajedos = document.getElementById('mensajes-dos')
+    sectionmensajedos.style.display = 'none'
+
     // Variables
     let botonMascotaJugador = document.getElementById('boton-mascota')
     botonMascotaJugador.addEventListener('click',seleccionarMascotaJugador)
@@ -41,14 +44,11 @@ function seleccionarMascotaJugador() {
     
     // Si aparezca al inicio del juego
     let sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque')
-    sectionSeleccionarAtaque.style.display = 'block'
+    sectionSeleccionarAtaque.style.display = 'flex'
 
     let inputHipodoge = document.getElementById('hipodoge')
     let inputCapipepo = document.getElementById('capipepo')
     let inputRatigueya = document.getElementById('ratigueya')
-    let inputLangostelvis = document.getElementById('langostelvis')
-    let inputTucapalma = document.getElementById('tucapalma')
-    let inputPydos = document.getElementById('pydos')
     let spanMascotaJugador = document.getElementById('mascota-jugador')
 
     if (inputHipodoge.checked) {
@@ -57,14 +57,9 @@ function seleccionarMascotaJugador() {
         spanMascotaJugador.innerHTML = 'Capipepo'
     } else if (inputRatigueya.checked) {
         spanMascotaJugador.innerHTML = 'Ratigueya'
-    } else if (inputLangostelvis.checked) {
-        spanMascotaJugador.innerHTML = 'Langostelvis'
-    } else if (inputTucapalma.checked) {
-        spanMascotaJugador.innerHTML = 'Tucapalma'
-    } else if (inputPydos.checked) {
-        spanMascotaJugador.innerHTML = 'Pydos'
     } else {
         alert('Selecciona tu mascota')
+        reiniciarJuego()
     }
 
     seleccionarMascotaEnemigo()
@@ -82,16 +77,7 @@ function seleccionarMascotaEnemigo () {
     } else if (mascotaAleatoria == 3) {
         // Ratigueya
         spanMascotaEnemigo.innerHTML = 'Ratigueya'
-    } else if (mascotaAleatoria == 4) {
-        // Langostelvis
-        spanMascotaEnemigo.innerHTML = 'Langostelvis'
-    } else if (mascotaAleatoria == 5) {
-        // Tucapalma
-        spanMascotaEnemigo.innerHTML = 'Tucapalma'
-    } else {
-        // Pydos
-        spanMascotaEnemigo.innerHTML = 'Pydos'
-    }
+    } 
 }
 
 // Funciones para ataques
@@ -145,9 +131,9 @@ function combate() {
 // Funcion para revisar vidas
 function revisarVidas(){
     if (vidasEnemigo == 0){
-        crearMensajeFinal("FELICITACIONES! Ganaste :)")
+        crearMensajeFinal("FELICITACIONES! Ganaste 🎉")
     } else if (vidasJugador == 0){
-        crearMensajeFinal("Lo siento, perdiste :(")
+        crearMensajeFinal("Lo siento, perdiste 😔")
     }
 }
 
@@ -164,7 +150,7 @@ function crearMensaje(resultado){
 
 // Se crea un Mensaje para el ganador
 function crearMensajeFinal(resultadoFinal){
-    let sectionMensajes = document.getElementById('mensajes')
+    let sectionMensajes = document.getElementById('mensajes-dos')
 
     let parrafo = document.createElement('p')
     parrafo.innerHTML = resultadoFinal
@@ -180,6 +166,8 @@ function crearMensajeFinal(resultadoFinal){
 
     let sectionReiniciar = document.getElementById('boton-reiniciar')
     sectionReiniciar.style.display = 'block'
+    let sectionmensajedos = document.getElementById('mensajes-dos')
+    sectionmensajedos.style.display = 'block'
 }
 
 // Funciones para aleatoridad
