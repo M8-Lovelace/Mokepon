@@ -7,7 +7,7 @@
 body{
   text-align: center;
   font-family: 'Fredoka One', cursive;
-  background-image: url("/assets/img/fondo.webp");
+  background-image: url("./assets/img/fondo.webp");
   background-size: cover;
 }
 
