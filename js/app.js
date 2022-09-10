@@ -15,8 +15,11 @@ function iniciarJuego(){
     let sectionReiniciar = document.getElementById('boton-reiniciar')
     sectionReiniciar.style.display = 'none'
 
-    let sectionmensajedos = document.getElementById('mensajes-dos')
+    let sectionmensajedos = document.getElementById('msj')
     sectionmensajedos.style.display = 'none'
+
+    let sectionresultados = document.getElementById('ocultar')
+    sectionresultados.style.display = 'none'
 
     // Variables
     let botonMascotaJugador = document.getElementById('boton-mascota')
@@ -82,26 +85,26 @@ function seleccionarMascotaEnemigo () {
 
 // Funciones para ataques
 function ataqueFuego() {
-    ataqueJugador = 'FUEGO'
+    ataqueJugador = 'FUEGO 🔥'
     ataqueAleatorioEnemigo()
 }
 function ataqueAgua() {
-    ataqueJugador = 'AGUA'
+    ataqueJugador = 'AGUA 💧'
     ataqueAleatorioEnemigo()
 }
 function ataqueTierra() {
-    ataqueJugador = 'TIERRA'
+    ataqueJugador = 'TIERRA 🌱'
     ataqueAleatorioEnemigo()
 }
 function ataqueAleatorioEnemigo() {
     let ataqueAleatorio = aleatorio(1,3)
     
     if (ataqueAleatorio == 1) {
-        ataqueEnemigo = 'FUEGO'
+        ataqueEnemigo = 'FUEGO 🔥'
     } else if (ataqueAleatorio == 2) {
-        ataqueEnemigo = 'AGUA'
+        ataqueEnemigo = 'AGUA 💧'
     } else {
-        ataqueEnemigo = 'TIERRA'
+        ataqueEnemigo = 'TIERRA 🌱'
     }
 
     combate()
@@ -112,10 +115,12 @@ function combate() {
     let spanVidasJugador = document.getElementById('vidas-jugador')
     let spanVidasEnemigo = document.getElementById('vidas-enemigo')
 
+    let sectionresultados = document.getElementById('ocultar')
+    sectionresultados.style.display = 'block' 
     if(ataqueJugador==ataqueEnemigo){
     crearMensaje("EMPATE")
     }
-    else if((ataqueJugador == 'FUEGO') && (ataqueEnemigo == 'TIERRA') ||(ataqueJugador == 'AGUA' && ataqueEnemigo == 'FUEGO') || ataqueJugador == 'TIERRA' && ataqueEnemigo == 'AGUA'){
+    else if((ataqueJugador == 'FUEGO 🔥') && (ataqueEnemigo == 'TIERRA 🌱') ||(ataqueJugador == 'AGUA 💧' && ataqueEnemigo == 'FUEGO 🔥') || ataqueJugador == 'TIERRA 🌱' && ataqueEnemigo == 'AGUA 💧'){
         crearMensaje("GANASTE")
         vidasEnemigo--
         spanVidasEnemigo.innerHTML = vidasEnemigo
@@ -139,13 +144,19 @@ function revisarVidas(){
 
 // Funciones para mensajes, se crea un mensaje nuevo para cada ataque
 function crearMensaje(resultado){
-    let sectionMensajes = document.getElementById('mensajes')
+    let sectionMensajes = document.getElementById('resultado')
+    let ataquesDelJugador = document.getElementById('ataques-del-jugador')
+    let ataquesDelEnemigo = document.getElementById('ataques-del-enemigo')
 
-    let parrafo = document.createElement('p')
-    parrafo.innerHTML = `Tu mascota atacó con ${ataqueJugador}, 
-    la mascota del enemigo atacó con ${ataqueEnemigo} - ${resultado}`
+    let nuevoAtaqueJugador = document.createElement('p')
+    let nuevoAtaqueEnemigo = document.createElement('p')
 
-    sectionMensajes.appendChild(parrafo)
+    sectionMensajes.innerHTML =resultado
+    nuevoAtaqueJugador.innerHTML = ataqueJugador
+    nuevoAtaqueEnemigo.innerHTML = ataqueEnemigo
+
+    ataquesDelJugador.appendChild(nuevoAtaqueJugador)
+    ataquesDelEnemigo.appendChild(nuevoAtaqueEnemigo)
 }
 
 // Se crea un Mensaje para el ganador
@@ -166,7 +177,7 @@ function crearMensajeFinal(resultadoFinal){
 
     let sectionReiniciar = document.getElementById('boton-reiniciar')
     sectionReiniciar.style.display = 'block'
-    let sectionmensajedos = document.getElementById('mensajes-dos')
+    let sectionmensajedos = document.getElementById('msj')
     sectionmensajedos.style.display = 'block'
 }
 
