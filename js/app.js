@@ -1,4 +1,24 @@
 // Variables Globales
+let sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque')
+let sectionReiniciar = document.getElementById('boton-reiniciar')
+let sectionmensajedos = document.getElementById('msj')
+let sectionresultados = document.getElementById('ocultar')
+let botonMascotaJugador = document.getElementById('boton-mascota')
+let botonFuego = document.getElementById('boton-fuego')
+let botonAgua = document.getElementById('boton-agua')
+let botonTierra = document.getElementById('boton-tierra')
+let botonReiniciar = document.getElementById('boton-reiniciar')
+
+let sectionSeleccionarMascota = document.getElementById('seleccionar-mascota')
+let inputHipodoge = document.getElementById('hipodoge')
+let inputCapipepo = document.getElementById('capipepo')
+let inputRatigueya = document.getElementById('ratigueya')
+let spanMascotaJugador = document.getElementById('mascota-jugador')
+
+let spanMascotaEnemigo = document.getElementById('mascota-enemigo')
+
+let spanVidasJugador = document.getElementById('vidas-jugador')
+let spanVidasEnemigo = document.getElementById('vidas-enemigo')
 
 let ataqueJugador 
 let ataqueEnemigo
@@ -7,52 +27,26 @@ let vidasEnemigo = 3
 
 // Iniciar juego
 function iniciarJuego(){
-    let sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque')
     // No aparezca al inicio del juego
     sectionSeleccionarAtaque.style.display = 'none'
-
-    // No aparezca al inicio del juego
-    let sectionReiniciar = document.getElementById('boton-reiniciar')
     sectionReiniciar.style.display = 'none'
-
-    let sectionmensajedos = document.getElementById('msj')
     sectionmensajedos.style.display = 'none'
-
-    let sectionresultados = document.getElementById('ocultar')
     sectionresultados.style.display = 'none'
 
-    // Variables
-    let botonMascotaJugador = document.getElementById('boton-mascota')
-    botonMascotaJugador.addEventListener('click',seleccionarMascotaJugador)
-
-    // Eventos
-    let botonFuego = document.getElementById('boton-fuego')
     //Escuchador de eventos
+    botonMascotaJugador.addEventListener('click',seleccionarMascotaJugador)
     botonFuego.addEventListener('click', ataqueFuego)
-    let botonAgua = document.getElementById('boton-agua')
     botonAgua.addEventListener('click', ataqueAgua)
-    let botonTierra = document.getElementById('boton-tierra')
     botonTierra.addEventListener('click', ataqueTierra)
-
     // Reiniciar juego
-    let botonReiniciar = document.getElementById('boton-reiniciar')
     botonReiniciar.addEventListener('click', reiniciarJuego)
 }
 
 // Funciones para mascotas
 function seleccionarMascotaJugador() {
     // No aparezca al inicio del juego
-    let sectionSeleccionarMascota = document.getElementById('seleccionar-mascota')
     sectionSeleccionarMascota.style.display = 'none'
-    
-    // Si aparezca al inicio del juego
-    let sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque')
     sectionSeleccionarAtaque.style.display = 'flex'
-
-    let inputHipodoge = document.getElementById('hipodoge')
-    let inputCapipepo = document.getElementById('capipepo')
-    let inputRatigueya = document.getElementById('ratigueya')
-    let spanMascotaJugador = document.getElementById('mascota-jugador')
 
     if (inputHipodoge.checked) {
         spanMascotaJugador.innerHTML = 'Hipodoge'
@@ -68,8 +62,7 @@ function seleccionarMascotaJugador() {
     seleccionarMascotaEnemigo()
 }
 function seleccionarMascotaEnemigo () {
-    let mascotaAleatoria = aleatorio(1,6)
-    let spanMascotaEnemigo = document.getElementById('mascota-enemigo')
+    let mascotaAleatoria = aleatorio(1,3)
 
     if (mascotaAleatoria == 1) {
         // Hipodoge
@@ -112,10 +105,6 @@ function ataqueAleatorioEnemigo() {
 
 // Funcion para el combate
 function combate() {
-    let spanVidasJugador = document.getElementById('vidas-jugador')
-    let spanVidasEnemigo = document.getElementById('vidas-enemigo')
-
-    let sectionresultados = document.getElementById('ocultar')
     sectionresultados.style.display = 'block' 
     if(ataqueJugador==ataqueEnemigo){
     crearMensaje("EMPATE")

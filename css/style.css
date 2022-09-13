@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
 *{
   margin: 0;
   padding: 0;
@@ -13,12 +14,11 @@ body{
 
 .container{
   margin: 25px auto;
-  width: 60%;
+  width: 50%;
   background-color: rgb(0, 0, 0);
   padding-bottom: 30px;
   border-radius: 20px;
   border: white solid 3px;
-  position: relative;
 }
 
 #seleccionar-mascota{
@@ -43,7 +43,7 @@ body{
   margin-bottom: 20px;
 }
 
-.tarjetas{
+.tarjetas, #ataques{
   display: flex;
   gap: 20px;
   width: 85%;
@@ -68,7 +68,7 @@ body{
 }
 
 .tarjeta-de-mokepon img{
-  width: 70%;
+  width: 50%;
 }
 
 .tarjetas input {
@@ -149,14 +149,11 @@ input:checked + label {
 #msj{
   color: black;
   margin-bottom: 30px;
-  padding: 50px;
+  padding: 20px;
   border-radius: 10px;
   font-size: 30px;
   background-color: white;
-  width: 40%;
-  position: absolute;
-  top:  170px;
-  left: 190px;
+  width: 60%;
 }
 
 #mensajes-dos{
@@ -195,11 +192,185 @@ input:checked + label {
   border-radius: 15px;
 }
 
-#ataques{
-  display: flex;
-}
-
 #ataques-del-jugador,#ataques-del-enemigo{
   color: white;
   margin: 10px 25px;
+}
+
+@media (max-width: 375px){
+  .container{
+    width: 80%;
+  }
+  .titulo{
+    font-size: 20px;
+  }
+  .subtitulo{
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+  .tarjeta-de-mokepon p{
+    font-size: 10px;
+  }
+  #boton-mascota{
+    font-size: 10px;
+  }
+  .tarjetas{
+    flex-direction: column;
+    width: 50%;
+  }
+  .boton-de-ataque{
+    margin: 5px;
+  }
+  .vidas{
+    font-size: 80%;
+  }
+  #vidas{
+    gap:10px;
+    margin: 10px;
+    padding: 5px;
+  }
+  #vidas-jugador, #vidas-enemigo{
+    font-size: 29px;
+  }
+  .tarjeta-de-mokepon{
+    margin-bottom: 0;
+  }
+  .tarjeta-de-mokepon img{
+    width: 50%;
+  }
+  #ocultar,#ataques-del-enemigo{
+    font-size: 8px;
+    margin-top: 10px;
+  }
+  #msj{
+    font-size: 12px;
+    padding: 10px;
+    width: 70%;
+    margin-bottom: 15px;
+  }
+  #boton-reiniciar{
+    font-size: 10px;
+    padding: 5px;
+  }
+  .ataques button{
+    font-size: 10px;
+  }
+}
+
+@media (min-width: 376px) and (max-width: 450px) {
+  .container{
+    width: 80%;
+  }
+  .titulo{
+    font-size: 20px;
+  }
+  .subtitulo{
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+  .tarjeta-de-mokepon p{
+    font-size: 10px;
+  }
+  #boton-mascota{
+    font-size: 10px;
+  }
+  .tarjetas{
+    flex-direction: column;
+    width: 50%;
+  }
+  .boton-de-ataque{
+    margin: 5px;
+  }
+  .vidas{
+    font-size: 80%;
+  }
+  #vidas{
+    gap:10px;
+    margin: 10px;
+    padding: 5px;
+  }
+  #vidas-jugador, #vidas-enemigo{
+    font-size: 29px;
+  }
+  .tarjeta-de-mokepon{
+    margin-bottom: 0;
+  }
+  .tarjeta-de-mokepon img{
+    width: 50%;
+  }
+  #ocultar,#ataques-del-enemigo{
+    font-size: 8px;
+    margin-top: 10px;
+  }
+  #msj{
+    font-size: 12px;
+    padding: 10px;
+    width: 70%;
+    margin-bottom: 15px;
+  }
+  #boton-reiniciar{
+    font-size: 10px;
+    padding: 5px;
+  }
+  .ataques button{
+    font-size: 10px;
+  }
+}
+
+@media (min-width: 451px) and (max-width: 900px) {
+  .container{
+    width: 80%;
+  }
+  .titulo{
+    font-size: 40px;
+  }
+  .subtitulo{
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  .tarjeta-de-mokepon p{
+    font-size: 18px;
+  }
+  #boton-mascota{
+    font-size: 18px;
+  }
+  .tarjetas{
+    width: 90%;
+  }
+  .boton-de-ataque{
+    margin: 5px;
+  }
+  .vidas{
+    font-size: 80%;
+  }
+  #vidas{
+    margin: 20px;
+    padding: 15px;
+  }
+  #vidas-jugador, #vidas-enemigo{
+    font-size: 35px;
+  }
+  .tarjeta-de-mokepon{
+    margin-bottom: 0;
+  }
+  .tarjeta-de-mokepon img{
+    width: 50%;
+  }
+  #ocultar,#ataques-del-enemigo{
+    font-size: 12px;
+    margin-top: 10px;
+  }
+  #msj{
+    font-size: 18px;
+    padding: 10px;
+    width: 60%;
+    margin-bottom: 15px;
+  }
+  #boton-reiniciar{
+    font-size: 15px;
+    padding: 5px;
+  }
+  .ataques button{
+    font-size: 15px;
+  }
 }
