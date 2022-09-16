@@ -1,29 +1,87 @@
 // Variables Globales
-let sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque')
-let sectionReiniciar = document.getElementById('boton-reiniciar')
-let sectionmensajedos = document.getElementById('msj')
-let sectionresultados = document.getElementById('ocultar')
-let botonMascotaJugador = document.getElementById('boton-mascota')
-let botonFuego = document.getElementById('boton-fuego')
-let botonAgua = document.getElementById('boton-agua')
-let botonTierra = document.getElementById('boton-tierra')
-let botonReiniciar = document.getElementById('boton-reiniciar')
+const sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque')
+const sectionReiniciar = document.getElementById('boton-reiniciar')
+const sectionmensajedos = document.getElementById('msj')
+const sectionresultados = document.getElementById('ocultar')
+const botonMascotaJugador = document.getElementById('boton-mascota')
+const botonFuego = document.getElementById('boton-fuego')
+const botonAgua = document.getElementById('boton-agua')
+const botonTierra = document.getElementById('boton-tierra')
+const botonReiniciar = document.getElementById('boton-reiniciar')
 
-let sectionSeleccionarMascota = document.getElementById('seleccionar-mascota')
-let inputHipodoge = document.getElementById('hipodoge')
-let inputCapipepo = document.getElementById('capipepo')
-let inputRatigueya = document.getElementById('ratigueya')
-let spanMascotaJugador = document.getElementById('mascota-jugador')
+const sectionSeleccionarMascota = document.getElementById('seleccionar-mascota')
+const inputHipodoge = document.getElementById('hipodoge')
+const inputCapipepo = document.getElementById('capipepo')
+const inputRatigueya = document.getElementById('ratigueya')
+const spanMascotaJugador = document.getElementById('mascota-jugador')
 
-let spanMascotaEnemigo = document.getElementById('mascota-enemigo')
+const spanMascotaEnemigo = document.getElementById('mascota-enemigo')
 
-let spanVidasJugador = document.getElementById('vidas-jugador')
-let spanVidasEnemigo = document.getElementById('vidas-enemigo')
+const spanVidasJugador = document.getElementById('vidas-jugador')
+const spanVidasEnemigo = document.getElementById('vidas-enemigo')
 
+const sectionMensajesResultado = document.getElementById('resultado')
+const ataquesDelJugador = document.getElementById('ataques-del-jugador')
+const ataquesDelEnemigo = document.getElementById('ataques-del-enemigo')
+
+const sectionMensaje = document.getElementById('mensaje')
+
+let mokepones=[]
 let ataqueJugador 
 let ataqueEnemigo
 let vidasJugador = 3
 let vidasEnemigo = 3
+
+class Mokepon{
+    constructor(nombre, foto, vida){
+        this.nombre=nombre,
+        this.foto=foto,
+        this.vida=vida
+        this.ataques=[]
+    }
+}
+let hipodoge = new Mokepon('Hipodoge','./assets/img/hipodoge.webp',5)
+let capipepo= new Mokepon('Capipepo','./assets/img/capipepo.webp',5)
+let ratigueya= new Mokepon('Ratigueya','./assets/img/ratigueya.webp',5)
+mokepones.push(hipodoge,capipepo,ratigueya)
+
+hipodoge.ataques.push(
+    {nombre:'💧', id:'boton-agua'},
+    {nombre:'💧', id:'boton-agua'},
+    {nombre:'💧', id:'boton-agua'},
+    {nombre:'🔥', id:'boton-fuego'},
+    {nombre:'🌱', id:'boton-tierra'}
+)
+
+capipepo.ataques.push(
+    {nombre:'🌱', id:'boton-tierra'},
+    {nombre:'🌱', id:'boton-tierra'},
+    {nombre:'🌱', id:'boton-tierra'},
+    {nombre:'💧', id:'boton-agua'},
+    {nombre:'🔥', id:'boton-fuego'}
+)
+
+ratigueya.ataques.push(
+    {nombre:'🔥', id:'boton-fuego'},
+    {nombre:'🔥', id:'boton-fuego'},
+    {nombre:'🔥', id:'boton-fuego'},
+    {nombre:'💧', id:'boton-agua'},
+    {nombre:'🌱', id:'boton-tierra'}
+)
+
+
+// Lista de pokemones que se insertarán en la pantalla principal
+// const listaPokemones = [
+//     { nombre: "gyarados", url: "../assets/gyarados.webp", vida: 3 },
+//     { nombre: "lugia", url: "../assets/lugia.webp", vida: 3 },
+//     { nombre: "pikachu", url: "../assets/pikachu.png", vida: 3 },
+//   ];
+  
+//   // Iterar el arreglo con un for of
+//   for (const pokemon of listaPokemones) {
+//       // tu código aquí
+//       console.log(pokemon);
+//   }
 
 // Iniciar juego
 function iniciarJuego(){
@@ -133,14 +191,10 @@ function revisarVidas(){
 
 // Funciones para mensajes, se crea un mensaje nuevo para cada ataque
 function crearMensaje(resultado){
-    let sectionMensajes = document.getElementById('resultado')
-    let ataquesDelJugador = document.getElementById('ataques-del-jugador')
-    let ataquesDelEnemigo = document.getElementById('ataques-del-enemigo')
-
     let nuevoAtaqueJugador = document.createElement('p')
     let nuevoAtaqueEnemigo = document.createElement('p')
 
-    sectionMensajes.innerHTML =resultado
+    sectionMensajesResultado.innerHTML =resultado
     nuevoAtaqueJugador.innerHTML = ataqueJugador
     nuevoAtaqueEnemigo.innerHTML = ataqueEnemigo
 
@@ -150,23 +204,19 @@ function crearMensaje(resultado){
 
 // Se crea un Mensaje para el ganador
 function crearMensajeFinal(resultadoFinal){
-    let sectionMensajes = document.getElementById('mensajes-dos')
-
     let parrafo = document.createElement('p')
     parrafo.innerHTML = resultadoFinal
 
-    sectionMensajes.appendChild(parrafo)
+    sectionMensaje.appendChild(parrafo)
 
-    let botonFuego = document.getElementById('boton-fuego')
     botonFuego.disabled = true
-    let botonAgua = document.getElementById('boton-agua')
+    
     botonAgua.disabled = true
-    let botonTierra = document.getElementById('boton-tierra')
+    
     botonTierra.disabled = true
-
-    let sectionReiniciar = document.getElementById('boton-reiniciar')
+    
     sectionReiniciar.style.display = 'block'
-    let sectionmensajedos = document.getElementById('msj')
+    
     sectionmensajedos.style.display = 'block'
 }
 
