@@ -1,4 +1,4 @@
-// Variables Globales
+// Constantes Globales
 const sectionSeleccionarAtaque = document.getElementById('seleccionar-ataque')
 const sectionReiniciar = document.getElementById('boton-reiniciar')
 const sectionmensajedos = document.getElementById('msj')
@@ -26,25 +26,29 @@ const ataquesDelEnemigo = document.getElementById('ataques-del-enemigo')
 
 const sectionMensaje = document.getElementById('mensaje')
 
+const contenedorTarjetas = document.getElementById('contenedor-tarjetas')
+
+// Variables Globales
 let mokepones=[]
 let ataqueJugador 
 let ataqueEnemigo
+let opcionDeMokepones
 let vidasJugador = 3
 let vidasEnemigo = 3
 
-class Mokepon{
-    constructor(nombre, foto, vida){
-        this.nombre=nombre,
-        this.foto=foto,
-        this.vida=vida
-        this.ataques=[]
-    }
-}
-let hipodoge = new Mokepon('Hipodoge','./assets/img/hipodoge.webp',5)
-let capipepo= new Mokepon('Capipepo','./assets/img/capipepo.webp',5)
-let ratigueya= new Mokepon('Ratigueya','./assets/img/ratigueya.webp',5)
-mokepones.push(hipodoge,capipepo,ratigueya)
+// Creacion del constructor y atributos del objeto
+class Mokepon{constructor(nombre,foto,vida){
+    this.nombre=nombre
+    this.foto=foto
+    this.vida=vida
+    this.ataques=[]
+}}
+// Inserción de atributos de cada objeto
+let hipodoge=new Mokepon('Hipodoge','../assets/img/hipodoge.png',5)
+let capipepo=new Mokepon('Capipepo','../assets/img/capipepo.png',5)
+let ratigueya=new Mokepon('Ratigueya','../assets/img/ratigueya.png',5)
 
+// Creacion de los ataques
 hipodoge.ataques.push(
     {nombre:'💧', id:'boton-agua'},
     {nombre:'💧', id:'boton-agua'},
@@ -52,7 +56,6 @@ hipodoge.ataques.push(
     {nombre:'🔥', id:'boton-fuego'},
     {nombre:'🌱', id:'boton-tierra'}
 )
-
 capipepo.ataques.push(
     {nombre:'🌱', id:'boton-tierra'},
     {nombre:'🌱', id:'boton-tierra'},
@@ -60,7 +63,6 @@ capipepo.ataques.push(
     {nombre:'💧', id:'boton-agua'},
     {nombre:'🔥', id:'boton-fuego'}
 )
-
 ratigueya.ataques.push(
     {nombre:'🔥', id:'boton-fuego'},
     {nombre:'🔥', id:'boton-fuego'},
@@ -68,7 +70,7 @@ ratigueya.ataques.push(
     {nombre:'💧', id:'boton-agua'},
     {nombre:'🌱', id:'boton-tierra'}
 )
-
+mokepones.push(hipodoge,capipepo,ratigueya)
 
 // Lista de pokemones que se insertarán en la pantalla principal
 // const listaPokemones = [
@@ -76,7 +78,7 @@ ratigueya.ataques.push(
 //     { nombre: "lugia", url: "../assets/lugia.webp", vida: 3 },
 //     { nombre: "pikachu", url: "../assets/pikachu.png", vida: 3 },
 //   ];
-  
+
 //   // Iterar el arreglo con un for of
 //   for (const pokemon of listaPokemones) {
 //       // tu código aquí
@@ -84,12 +86,24 @@ ratigueya.ataques.push(
 //   }
 
 // Iniciar juego
+
 function iniciarJuego(){
     // No aparezca al inicio del juego
     sectionSeleccionarAtaque.style.display = 'none'
     sectionReiniciar.style.display = 'none'
     sectionmensajedos.style.display = 'none'
     sectionresultados.style.display = 'none'
+
+    mokepones.forEach((mokepon)=>{
+        opcionDeMokepones=`
+        <input type="radio" name="mascota" id=${mokepon.nombre} />
+        <label class="tarjeta-de-mokepon" for=${mokepon.nombre}>
+            <p>${mokepon.nombre}</p>
+            <img src=${mokepon.foto} alt=${mokepon.nombre}>
+        </label>
+        `
+        contenedorTarjetas.innerHTM=opcionDeMokepones
+    })
 
     //Escuchador de eventos
     botonMascotaJugador.addEventListener('click',seleccionarMascotaJugador)
