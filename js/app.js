@@ -96,6 +96,7 @@ function iniciarJuego() {
   sectionmensajedos.style.display = "none";
   sectionresultados.style.display = "none";
 
+  //   Iterador para generar mokepones dependiendo de la cantidad de pokemones que se agreguen en el arreglo
   mokepones.forEach((mokepon) => {
     opcionDeMokepones = `
         <input type="radio" name="mascota" id=${mokepon.nombre} />
@@ -104,7 +105,7 @@ function iniciarJuego() {
             <img src=${mokepon.foto} alt=${mokepon.nombre}>
         </label>
         `;
-    contenedorTarjetas.innerHTM = opcionDeMokepones;
+    contenedorTarjetas.innerHTML += opcionDeMokepones;
   });
 
   //Escuchador de eventos
