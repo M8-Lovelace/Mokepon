@@ -10,9 +10,6 @@ const botonTierra = document.getElementById("boton-tierra");
 const botonReiniciar = document.getElementById("boton-reiniciar");
 
 const sectionSeleccionarMascota = document.getElementById("seleccionar-mascota");
-const inputHipodoge = document.getElementById("hipodoge");
-const inputCapipepo = document.getElementById("capipepo");
-const inputRatigueya = document.getElementById("ratigueya");
 const spanMascotaJugador = document.getElementById("mascota-jugador");
 
 const spanMascotaEnemigo = document.getElementById("mascota-enemigo");
@@ -33,6 +30,10 @@ let mokepones = [];
 let ataqueJugador;
 let ataqueEnemigo;
 let opcionDeMokepones;
+let inputHipodoge;
+let inputCapipepo;
+let inputRatigueya;
+let mascotaJugador;
 let vidasJugador = 3;
 let vidasEnemigo = 3;
 
@@ -50,7 +51,7 @@ let hipodoge = new Mokepon("Hipodoge", "../assets/img/hipodoge.png", 5);
 let capipepo = new Mokepon("Capipepo", "../assets/img/capipepo.png", 5);
 let ratigueya = new Mokepon("Ratigueya", "../assets/img/ratigueya.png", 5);
 
-// Creacion de los ataques
+// Creacion e inserción de los ataques a los objetos creados
 hipodoge.ataques.push(
   { nombre: "💧", id: "boton-agua" },
   { nombre: "💧", id: "boton-agua" },
@@ -74,19 +75,6 @@ ratigueya.ataques.push(
 );
 mokepones.push(hipodoge, capipepo, ratigueya);
 
-// Lista de pokemones que se insertarán en la pantalla principal
-// const listaPokemones = [
-//     { nombre: "gyarados", url: "../assets/gyarados.webp", vida: 3 },
-//     { nombre: "lugia", url: "../assets/lugia.webp", vida: 3 },
-//     { nombre: "pikachu", url: "../assets/pikachu.png", vida: 3 },
-//   ];
-
-//   // Iterar el arreglo con un for of
-//   for (const pokemon of listaPokemones) {
-//       // tu código aquí
-//       console.log(pokemon);
-//   }
-
 // Iniciar juego
 
 function iniciarJuego() {
@@ -104,9 +92,13 @@ function iniciarJuego() {
             <p>${mokepon.nombre}</p>
             <img src=${mokepon.foto} alt=${mokepon.nombre}>
         </label>
-        `;
+        `
     contenedorTarjetas.innerHTML += opcionDeMokepones;
   });
+
+  inputHipodoge = document.getElementById("Hipodoge");
+  inputCapipepo = document.getElementById("Capipepo");
+  inputRatigueya = document.getElementById("Ratigueya");
 
   //Escuchador de eventos
   botonMascotaJugador.addEventListener("click", seleccionarMascotaJugador);
@@ -124,31 +116,34 @@ function seleccionarMascotaJugador() {
   sectionSeleccionarAtaque.style.display = "flex";
 
   if (inputHipodoge.checked) {
-    spanMascotaJugador.innerHTML = "Hipodoge";
+    spanMascotaJugador.innerHTML = inputHipodoge.id;
+    mascotaJugador = inputHipodoge.id;
   } else if (inputCapipepo.checked) {
-    spanMascotaJugador.innerHTML = "Capipepo";
+    spanMascotaJugador.innerHTML = inputCapipepo.id;
+    mascotaJugador = inputCapipepo.id;
   } else if (inputRatigueya.checked) {
-    spanMascotaJugador.innerHTML = "Ratigueya";
+    spanMascotaJugador.innerHTML = inputRatigueya.id
+    mascotaJugador = inputRatigueya.id;
   } else {
     alert("Selecciona tu mascota");
     reiniciarJuego();
   }
-
+  extraerAtaque(mascotaJugador)
   seleccionarMascotaEnemigo();
 }
-function seleccionarMascotaEnemigo() {
-  let mascotaAleatoria = aleatorio(1, 3);
-
-  if (mascotaAleatoria == 1) {
-    // Hipodoge
-    spanMascotaEnemigo.innerHTML = "Hipodoge";
-  } else if (mascotaAleatoria == 2) {
-    // Capipepo
-    spanMascotaEnemigo.innerHTML = "Capipepo";
-  } else if (mascotaAleatoria == 3) {
-    // Ratigueya
-    spanMascotaEnemigo.innerHTML = "Ratigueya";
+function extraerAtaques(mascotaJugador){
+  let ataques 
+  for(let i=0; i<mokepones.length; index++){
+    if(mascotaJugador === mokepones[i].nombre){
+      ataques = mokepones[i].ataques
+    }
   }
+}
+
+function seleccionarMascotaEnemigo() {
+  let mascotaAleatoria = aleatorio(1, mokepones.length -1);
+
+  spanMascotaEnemigo.innerHTML = mokepones[mascotaAleatoria].nombre
 }
 
 // Funciones para ataques
