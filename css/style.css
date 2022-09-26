@@ -61,6 +61,7 @@ body {
 
 .tarjeta-de-mokepon:hover {
   cursor: pointer;
+  background-color: rgb(255, 0, 0);
 }
 
 .tarjeta-de-mokepon p {
@@ -98,6 +99,7 @@ input:checked + label {
 
 #boton-mascota:hover {
   cursor: pointer;
+  background-color: rgb(255, 0, 0)
 }
 
 #seleccionar-ataque {
@@ -105,7 +107,7 @@ input:checked + label {
   align-items: center;
 }
 
-.boton-de-ataque {
+.boton-de-ataque{
   background-color: transparent;
   border-radius: 20px;
   padding: 10px;
@@ -120,6 +122,7 @@ input:checked + label {
 
 .boton-de-ataque:hover {
   cursor: pointer;
+  background-color: rgb(255, 0, 0);
 }
 
 .vidas {
@@ -178,6 +181,7 @@ input:checked + label {
 
 #boton-reiniciar:hover {
   cursor: pointer;
+  background-color: rgb(255, 0, 0);
 }
 
 #ocultar {
