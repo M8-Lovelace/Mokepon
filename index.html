@@ -1,62 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/style.css" type="text/css" />
-    <title>Mokepon</title>
+    <meta charset="utf-8" />
+    <title>MOKEPON!</title>
+    <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
-    <div class="container">
-      <section id="seleccionar-mascota">
-        <h1 class="titulo">¡Mokepon!</h1>
-        <h2 class="subtitulo">¡Elige a tu Mokepon!</h2>
+    <section id="seleccionar-mascota">
+      <h1 class="titulo">Mokepon</h1>
+      <h2 class="subtitulo">Elige tu mascota:</h2>
 
-        <div id="contenedor-tarjetas" class="tarjetas"></div>
+      <div id="contenedorTarjetas" class="tarjetas">
+      </div>
 
-        <button id="boton-mascota">Seleccionar</button>
-      </section>
+      <button id="boton-mascota">Seleccionar</button>
 
-      <section id="seleccionar-ataque">
-        <h1 class="titulo">¡Mokepon!</h1>
+    </section>
+    <section id="seleccionar-ataque">
+      <h1 class="titulo">Mokepon</h1>
+      <h2 class="subtitulo">Elige tu ataque:</h2>
 
-        <div id="msj">
-          <p id="mensaje"></p>
+      <div id="contenedorAtaques" class="tarjetas-ataques">
+      </div>
 
-          <section id="reiniciar">
-            <button id="boton-reiniciar">Reiniciar</button>
-          </section>
+      <div id="mensajes">
+        <p id="resultado">Mucha suerte</p>
+        <section id="reiniciar">
+          <button id="boton-reiniciar">Reiniciar</button>
+        </section>
+      </div>
+
+      <div class="ataques">
+        <div class="ataques-jugador">
+          <p id="vidas-jugador">0</p>
+          <p id="mascota-jugador"></p>
+
+          <div id="ataques-del-jugador"></div>
+
         </div>
 
-        <h2 class="subtitulo">Elige tu ataque:</h2>
+        <div class="ataques-enemigo">
+          <p id="vidas-enemigo">0</p>
+          <p id="mascota-enemigo"></p>
 
-        <div id="contenedor-ataques" class="contenedor-ataques">
-          
-        </div>
+          <div id="ataques-del-enemigo"></div>
 
-        <div id="ocultar">
-          <p id="resultado"></p>
         </div>
+      </div>
 
-        <div class="vidas">
-          <div id="vidas">
-            <span id="vidas-jugador">3</span><br /><br />
-            <p>Tú: <br /><span id="mascota-jugador"></span></p>
-            <div id="ocultar">
-              <div id="ataques-del-jugador"></div>
-            </div>
-          </div>
-          <div id="vidas">
-            <span id="vidas-enemigo">3</span><br /><br />
-            <p>Enemigo: <br /><span id="mascota-enemigo"></span></p>
-            <div id="ocultar">
-              <div id="ataques-del-enemigo"></div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-    <script src="./js/app.js"></script> 
+    </section>
+  <script src="./js/index.js"></script>
   </body>
 </html>

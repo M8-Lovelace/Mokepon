@@ -1,24 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap");
-
-*{
-  margin: 0;
-  padding: 0;
-}
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@300&display=swap');
 
 body {
-  text-align: center;
-  font-family: "Fredoka One", cursive;
-  background-image: url("../assets/img/fondo.png");
-  background-size: cover;
-}
-
-.container {
-  margin: 25px auto;
-  width: 50%;
-  background-color: rgb(0, 0, 0);
-  padding-bottom: 30px;
-  border-radius: 20px;
-  border: white solid 3px;
+  font-family: 'Poppins', sans-serif;
+  background-color: #041562;
 }
 
 #seleccionar-mascota {
@@ -29,52 +13,53 @@ body {
 }
 
 .titulo {
-  color: rgb(255, 255, 255);
-  border-radius: 15px;
-  padding: 15px;
-  margin: 30px 0 25px 0;
-  font-size: 35px;
-  border: white solid 3px;
+  color: white;
+  font-size: 45px;
+  font-family: 'Fredoka One', cursive;
 }
 
 .subtitulo {
-  color: rgb(255, 255, 255);
+  color: white;
   font-size: 20px;
-  margin-bottom: 20px;
 }
 
-.tarjetas,
-#ataques {
+.tarjetas, .tarjetas-ataques {
   display: flex;
-  gap: 20px;
-  width: 85%;
+  gap: 10px;
 }
 
 .tarjeta-de-mokepon {
+  width: 180px;
+  height: 100px;
+  background: #11468F;
   padding: 10px;
   box-sizing: border-box;
-  border-radius: 15px;
-  margin-bottom: 20px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: white;
-  border: white solid 3px;
 }
-
-.tarjeta-de-mokepon:hover {
+.tarjeta-de-mokepon:hover{
   cursor: pointer;
-  background-color: rgb(255, 0, 0);
-}
-
-.tarjeta-de-mokepon p {
-  font-size: 20px;
-  margin-bottom: 10px;
 }
 
 .tarjeta-de-mokepon img {
-  width: 50%;
+  width: 80px;
 }
 
-.tarjetas input {
-  display: none;
+#boton-mascota {
+  width: 180px;
+  height: 40px;
+  border-radius: 20px;
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  margin-top: 30px;
+}
+#boton-mascota:hover{
+  cursor: pointer;
 }
 
 input {
@@ -82,308 +67,69 @@ input {
 }
 
 input:checked + label {
-  background-color: red;
-}
-
-#boton-mascota {
-  margin: 15px;
-  width: 40%;
-  padding: 5px;
-  border-radius: 20px;
-  background: transparent;
-  border: 3px solid white;
-  color: white;
-  font-family: "Fredoka One", cursive;
-  font-size: 20px;
-}
-
-#boton-mascota:hover {
-  cursor: pointer;
-  background-color: rgb(255, 0, 0)
+  background-color: #5D8BF4;
 }
 
 #seleccionar-ataque {
+  display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.boton-de-ataque{
-  background-color: transparent;
-  border-radius: 20px;
+.boton-de-ataque {
+  background-color: #11468F;
   padding: 10px;
   box-sizing: border-box;
+  border-radius: 20px;
   border-color: transparent;
-  width: 100px;
+  width: 80px;
   color: white;
-  margin: 0 10px;
-  font-family: "Fredoka One", cursive;
-  border: white solid 3px;
+  font-family: 'Poppins', sans-serif;
 }
-
-.boton-de-ataque:hover {
+.boton-de-ataque:hover{
   cursor: pointer;
-  background-color: rgb(255, 0, 0);
 }
 
-.vidas {
-  color: white;
-  padding: 5px;
-  border-radius: 8px;
+#mensajes {
+  width: 280px;
+  background: #EEEEEE;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 20px;
   display: flex;
-}
-
-#vidas {
-  margin: 20px;
-  border: white solid 2px;
-  padding: 20px;
-  border-radius: 15px;
-}
-
-#vidas-jugador,
-#vidas-enemigo {
-  font-size: 40px;
-}
-
-#mascota-enemigo {
-  color: red;
-}
-#mascota-jugador {
-  color: greenyellow;
-}
-
-#msj {
-  color: black;
-  margin-bottom: 30px;
-  padding: 20px;
-  border-radius: 10px;
-  font-size: 30px;
-  background-color: white;
-  width: 60%;
-}
-
-#mensajes-dos {
-  margin: 0 auto;
+  align-items: center;
+  flex-direction: column;
 }
 
 #boton-reiniciar {
-  background-color: transparent;
-  border-radius: 10px;
-  padding: 10px;
-  margin-bottom: 30px;
-  box-sizing: border-box;
-  border-color: transparent;
-  width: 100px;
-  color: black;
-  font-family: "Fredoka One", cursive;
-  border: black solid 3px;
-  margin: 15px auto 0 auto;
+  border: none;
+  color: #11468F;
+  font-family: 'Poppins', sans-serif;
 }
 
-#boton-reiniciar:hover {
+#boton-reiniciar:hover{
   cursor: pointer;
-  background-color: rgb(255, 0, 0);
 }
 
-#ocultar {
-  margin-top: 25px;
-}
-
-#resultado {
-  color: black;
-  background-color: white;
-  padding: 10px 0;
-  width: 100px;
-  margin: 0 auto;
-  border: white solid 2px;
-  border-radius: 15px;
-}
-
-#ataques-del-jugador,
-#ataques-del-enemigo {
+.ataques {
+  display: grid;
+  grid-template-columns: 100px 100px;
   color: white;
-  margin: 10px 25px;
 }
 
-@media (max-width: 375px) {
-  .container {
-    width: 80%;
-  }
-  .titulo {
-    font-size: 20px;
-  }
-  .subtitulo {
-    font-size: 12px;
-    margin-bottom: 10px;
-  }
-  .tarjeta-de-mokepon p {
-    font-size: 10px;
-  }
-  #boton-mascota {
-    font-size: 10px;
-  }
-  .tarjetas {
+#vidas-jugador, #vidas-enemigo {
+  font-size: 32px;
+  margin-bottom: 0;
+}
+
+.ataques-jugador, .ataques-enemigo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (max-width: 360px) {
+  .tarjetas, .tarjetas-ataques {
     flex-direction: column;
-    width: 50%;
-  }
-  .boton-de-ataque {
-    margin: 5px;
-  }
-  .vidas {
-    font-size: 80%;
-  }
-  #vidas {
-    gap: 10px;
-    margin: 10px;
-    padding: 5px;
-  }
-  #vidas-jugador,
-  #vidas-enemigo {
-    font-size: 29px;
-  }
-  .tarjeta-de-mokepon {
-    margin-bottom: 0;
-  }
-  .tarjeta-de-mokepon img {
-    width: 50%;
-  }
-  #ocultar,
-  #ataques-del-enemigo {
-    font-size: 8px;
-    margin-top: 10px;
-  }
-  #msj {
-    font-size: 12px;
-    padding: 10px;
-    width: 70%;
-    margin-bottom: 15px;
-  }
-  #boton-reiniciar {
-    font-size: 10px;
-    padding: 5px;
-  }
-  .ataques button {
-    font-size: 10px;
-  }
-}
-
-@media (min-width: 376px) and (max-width: 450px) {
-  .container {
-    width: 80%;
-  }
-  .titulo {
-    font-size: 20px;
-  }
-  .subtitulo {
-    font-size: 12px;
-    margin-bottom: 10px;
-  }
-  .tarjeta-de-mokepon p {
-    font-size: 10px;
-  }
-  #boton-mascota {
-    font-size: 10px;
-  }
-  .tarjetas {
-    flex-direction: column;
-    width: 50%;
-  }
-  .boton-de-ataque {
-    margin: 5px;
-  }
-  .vidas {
-    font-size: 80%;
-  }
-  #vidas {
-    gap: 10px;
-    margin: 10px;
-    padding: 5px;
-  }
-  #vidas-jugador,
-  #vidas-enemigo {
-    font-size: 29px;
-  }
-  .tarjeta-de-mokepon {
-    margin-bottom: 0;
-  }
-  .tarjeta-de-mokepon img {
-    width: 50%;
-  }
-  #ocultar,
-  #ataques-del-enemigo {
-    font-size: 8px;
-    margin-top: 10px;
-  }
-  #msj {
-    font-size: 12px;
-    padding: 10px;
-    width: 70%;
-    margin-bottom: 15px;
-  }
-  #boton-reiniciar {
-    font-size: 10px;
-    padding: 5px;
-  }
-  .ataques button {
-    font-size: 10px;
-  }
-}
-
-@media (min-width: 451px) and (max-width: 900px) {
-  .container {
-    width: 80%;
-  }
-  .titulo {
-    font-size: 40px;
-  }
-  .subtitulo {
-    font-size: 18px;
-    margin-bottom: 20px;
-  }
-  .tarjeta-de-mokepon p {
-    font-size: 18px;
-  }
-  #boton-mascota {
-    font-size: 18px;
-  }
-  .tarjetas {
-    width: 90%;
-  }
-  .boton-de-ataque {
-    margin: 5px;
-  }
-  .vidas {
-    font-size: 80%;
-  }
-  #vidas {
-    margin: 20px;
-    padding: 15px;
-  }
-  #vidas-jugador,
-  #vidas-enemigo {
-    font-size: 35px;
-  }
-  .tarjeta-de-mokepon {
-    margin-bottom: 0;
-  }
-  .tarjeta-de-mokepon img {
-    width: 50%;
-  }
-  #ocultar,
-  #ataques-del-enemigo {
-    font-size: 12px;
-    margin-top: 10px;
-  }
-  #msj {
-    font-size: 18px;
-    padding: 10px;
-    width: 60%;
-    margin-bottom: 15px;
-  }
-  #boton-reiniciar {
-    font-size: 15px;
-    padding: 5px;
-  }
-  .ataques button {
-    font-size: 15px;
   }
 }
