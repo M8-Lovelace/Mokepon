@@ -20,27 +20,32 @@ const ataquesDelEnemigo = document.getElementById('ataques-del-enemigo');
 const contenedorTarjetas = document.getElementById('contenedorTarjetas');
 const contenedorAtaques = document.getElementById('contenedorAtaques');
 
+const sectionVerMapa = document.getElementById('ver-mapa')
+const mapa = document.getElementById('mapa')
+
 // --------------------------Variables Globales---------------------------------
-let mokepones = [];
-let ataqueJugador = [];
-let ataqueEnemigo = [];
-let opcionDeMokepones;
-let inputHipodoge;
-let inputCapipepo;
-let inputRatigueya;
-let mascotaJugador;
-let ataquesMokepon;
-let ataquesMokeponEnemigo;
-let botonFuego;
-let botonAgua;
-let botonTierra;
-let botones = [];
-let indexAtaqueJugador;
-let indexAtaqueEnemigo;
-let victoriasJugador = 0;
-let victoriasEnemigo = 0;
-let vidasJugador = 3;
-let vidasEnemigo = 3;
+let mokepones = []
+let ataqueJugador =[]
+let ataqueEnemigo = []
+let opcionDeMokepones
+let inputHipodoge
+let inputCapipepo
+let inputRatigueya
+let mascotaJugador
+let ataquesMokepon
+let ataquesMokeponEnemigo
+let botonFuego
+let botonAgua
+let botonTierra
+let botones = []
+let indexAtaqueJugador
+let indexAtaqueEnemigo
+let victoriasJugador = 0
+let victoriasEnemigo = 0 
+let vidasJugador = 3
+let vidasEnemigo = 3
+let lienzo = mapa.getContext("2d")
+let intervalo
 
 // -------------------------------OBJETOS---------------------------------------
 // Creacion del constructor y atributos del objeto
@@ -50,6 +55,14 @@ class Mokepon {
     this.foto = foto;
     this.vida = vida;
     this.ataques = [];
+    this.x = 20;
+    this.y = 30;
+    this.ancho = 80;
+    this.alto = 80;
+    this.mapaFoto = new Image();
+    this.mapaFoto.src = foto;
+    this.velocidadX = 0;
+    this.velocidadY = 0;
   }
 }
 // Inserción de atributos de cada objeto
@@ -86,6 +99,7 @@ mokepones.push(hipodoge, capipepo, ratigueya);
 function iniciarJuego() {
   // No aparezca al inicio del juego
   sectionSeleccionarAtaque.style.display = 'none';
+  sectionVerMapa.style.display = 'none'
 
   //   Iterador para generar mokepones dependiendo de la cantidad de pokemones que se agreguen en el arreglo
   mokepones.forEach((mokepon) => {
@@ -115,7 +129,11 @@ function iniciarJuego() {
 function seleccionarMascotaJugador() {
   // No aparezca al inicio del juego
   sectionSeleccionarMascota.style.display = 'none';
-  sectionSeleccionarAtaque.style.display = 'flex';
+  sectionVerMapa.style.display = 'flex'
+  intervalo = setInterval(pintarPersonaje,50)
+
+  window.addEventListener('keydown', sePresionoUnaTecla)
+  window.addEventListener('keyup', detenerMovimiento)
 
   if (inputHipodoge.checked) {
     spanMascotaJugador.innerHTML = inputHipodoge.id;
@@ -279,7 +297,49 @@ function crearMensajeFinal(resultadoFinal) {
   sectionReiniciar.style.display = 'block';
 }
 
-// --------------------------------OTROS
+// --------------------------------CANVAS----------------------------------------
+// Funciones para movimiento de canvas
+function pintarPersonaje(){
+  capipepo.x = capipepo.x + capipepo.velocidadX;
+  capipepo.y = capipepo.y + capipepo.velocidadY;
+  lienzo.clearRect(0,0,mapa.width,mapa.height);
+  lienzo.drawImage(capipepo.mapaFoto,capipepo.x,capipepo.y,capipepo.ancho,capipepo.alto)
+};
+
+function moverDerecha(){
+  capipepo.velocidadX = 5;
+
+}
+function moverIzquierda(){
+  capipepo.velocidadX = -5;
+}
+function moverAbajo(){
+  capipepo.velocidadY = 5;
+}
+function moverArriba(){
+  capipepo.velocidadY = -5;
+}
+function detenerMovimiento(){
+  capipepo.velocidadX=0;
+  capipepo.velocidadY=0;
+}
+function sePresionoUnaTecla(){
+  let tecla = event.keyCode;
+  if(tecla == 39){
+    moverDerecha();
+  }
+  if(tecla == 37){
+    moverIzquierda();
+  }
+  if(tecla == 38){
+    moverArriba();
+  }
+  if(tecla == 40){
+    moverAbajo();
+  }
+}
+
+// --------------------------------OTROS----------------------------------------
 // Funciones para aleatoridad
 function aleatorio(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
@@ -290,5 +350,4 @@ function reiniciarJuego() {
 }
 
 // NOTA: esta es otra manera de llamar al script despues de que se cargue todo el HTML. La funcion iniciarJuego se carga cuando ya todo el contenido esta cargado.
-
 window.addEventListener('load', iniciarJuego);
