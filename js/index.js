@@ -49,29 +49,56 @@ let lienzo = mapa.getContext("2d")
 let intervalo
 let mapaBackground = new Image()
 mapaBackground.src = './assets/img/mokemap.png'
+let alturaQueBusacamos
+let anchoDelMapa = window.innerWidth - 20
+const anchoMaximoDelMapa = 350
+
+if (anchoDelMapa > anchoMaximoDelMapa) { 
+    anchoDelMapa = anchoMaximoDelMapa-20
+}
+
+alturaQueBusacamos = anchoDelMapa * 600 / 800
+
+mapa.width = anchoDelMapa
+mapa.height = alturaQueBusacamos
 
 // -------------------------------OBJETOS---------------------------------------
 // Creacion del constructor y atributos del objeto
 class Mokepon {
-  constructor(nombre, foto, vida) {
+  constructor(nombre, foto, vida, fotoMapa) {
     this.nombre = nombre;
     this.foto = foto;
     this.vida = vida;
     this.ataques = [];
-    this.x = 20;
-    this.y = 30;
-    this.ancho = 80;
-    this.alto = 80;
+    this.ancho = 60;
+    this.alto = 60;
+    this.x = aleatorio(0, mapa.width - this.ancho);
+    this.y = aleatorio(0, mapa.height - this.alto);
     this.mapaFoto = new Image();
-    this.mapaFoto.src = foto;
+    this.mapaFoto.src = fotoMapa;
     this.velocidadX = 0;
     this.velocidadY = 0;
   }
+
+  pintarMokepon() {
+    lienzo.drawImage(
+      this.mapaFoto,
+      this.x,
+      this.y,
+      this.ancho,
+      this.alto)
+  }
 }
-// Inserción de atributos de cada objeto
-let hipodoge = new Mokepon('Hipodoge', './assets/img/hipodoge.png', 5);
-let capipepo = new Mokepon('Capipepo', './assets/img/capipepo.png', 5);
-let ratigueya = new Mokepon('Ratigueya', './assets/img/ratigueya.png', 5);
+// Inserción de atributos de cada objeto del Jugador
+let hipodoge = new Mokepon('Hipodoge', './assets/img/hipodoge.png', 5, './assets/img/hipodoge.png');
+let capipepo = new Mokepon('Capipepo', './assets/img/capipepo.png', 5, './assets/img/capipepo.png');
+let ratigueya = new Mokepon('Ratigueya', './assets/img/ratigueya.png', 5, './assets/img/ratigueya.png');
+
+// Inserción de atributos de cada objeto del Enemigo
+let hipodogeEnemigo = new Mokepon('Hipodoge', './assets/img/hipodoge.png', 5, './assets/img/hipodoge.png');
+let capipepoEnemigo = new Mokepon('Capipepo', './assets/img/capipepo.png', 5, './assets/img/capipepo.png');
+let ratigueyaEnemigo = new Mokepon('Ratigueya', './assets/img/ratigueya.png', 5, './assets/img/ratigueya.png');
+
 
 // Creacion e inserción de los ataques a los objetos creados
 hipodoge.ataques.push(
@@ -81,6 +108,14 @@ hipodoge.ataques.push(
   { nombre: '🔥', id: 'boton-fuego' },
   { nombre: '🌱', id: 'boton-tierra' }
 );
+hipodogeEnemigo.ataques.push(
+  { nombre: '💧', id: 'boton-agua' },
+  { nombre: '💧', id: 'boton-agua' },
+  { nombre: '💧', id: 'boton-agua' },
+  { nombre: '🔥', id: 'boton-fuego' },
+  { nombre: '🌱', id: 'boton-tierra' }
+);
+
 capipepo.ataques.push(
   { nombre: '🌱', id: 'boton-tierra' },
   { nombre: '🌱', id: 'boton-tierra' },
@@ -88,7 +123,21 @@ capipepo.ataques.push(
   { nombre: '💧', id: 'boton-agua' },
   { nombre: '🔥', id: 'boton-fuego' }
 );
+capipepoEnemigo.ataques.push(
+  { nombre: '🌱', id: 'boton-tierra' },
+  { nombre: '🌱', id: 'boton-tierra' },
+  { nombre: '🌱', id: 'boton-tierra' },
+  { nombre: '💧', id: 'boton-agua' },
+  { nombre: '🔥', id: 'boton-fuego' }
+);
 ratigueya.ataques.push(
+  { nombre: '🔥', id: 'boton-fuego' },
+  { nombre: '🔥', id: 'boton-fuego' },
+  { nombre: '🔥', id: 'boton-fuego' },
+  { nombre: '💧', id: 'boton-agua' },
+  { nombre: '🌱', id: 'boton-tierra' }
+);
+ratigueyaEnemigo.ataques.push(
   { nombre: '🔥', id: 'boton-fuego' },
   { nombre: '🔥', id: 'boton-fuego' },
   { nombre: '🔥', id: 'boton-fuego' },
@@ -149,7 +198,6 @@ function seleccionarMascotaJugador() {
   extraerAtaques(mascotaJugador);
   sectionVerMapa.style.display = 'flex'
   iniciarMapa()
-  seleccionarMascotaEnemigo();
 }
 // Extraer los ataques predefinidos de la mascota seleccionada
 function extraerAtaques(mascotaJugador) {
@@ -294,7 +342,7 @@ function crearMensaje(resultado) {
 // Se crea un Mensaje para el ganador
 function crearMensajeFinal(resultadoFinal) {
   sectionMensajes.innerHTML = resultadoFinal;
-  sectionReiniciar.style.display = 'block';
+  sectionReiniciar.style.display = 'flex';
 }
 
 // --------------------------------CANVAS----------------------------------------
@@ -310,7 +358,16 @@ function pintarCanvas(){
     mapa.width,
     mapa.height
   );
-  lienzo.drawImage(mascotaJugadorObjeto.mapaFoto,mascotaJugadorObjeto.x,mascotaJugadorObjeto.y,mascotaJugadorObjeto.ancho,mascotaJugadorObjeto.alto)
+  mascotaJugadorObjeto.pintarMokepon();
+  hipodogeEnemigo.pintarMokepon();
+  capipepoEnemigo.pintarMokepon();
+  ratigueyaEnemigo.pintarMokepon();
+
+  if(mascotaJugadorObjeto.velocidadX !== 0||mascotaJugadorObjeto.velocidadY !== 0){
+    revisarColision(hipodogeEnemigo);
+    revisarColision(capipepoEnemigo);
+    revisarColision(ratigueyaEnemigo);
+  }
 };
 
 function moverDerecha(){
@@ -346,8 +403,7 @@ function sePresionoUnaTecla(){
   }
 }
 function iniciarMapa(){
-  mapa.width = 320;
-  mapa.height = 240;
+
   mascotaJugadorObjeto = obtenerObjetoMascota(mascotaJugador);
   intervalo = setInterval(pintarCanvas,50)
 
@@ -360,6 +416,33 @@ function obtenerObjetoMascota(){
       return mokepones[i];
     }
   }
+}
+function revisarColision(enemigo){
+  const arribaEnemigo = enemigo.y;
+  const abajoEnemigo = enemigo.y + enemigo.alto;
+  const izquierdaEnemigo = enemigo.x;
+  const derechaEnemigo = enemigo.x + enemigo.ancho;
+
+  const arribaMascota = mascotaJugadorObjeto.y;
+  const abajoMascota = mascotaJugadorObjeto.y + mascotaJugadorObjeto.alto;
+  const izquierdaMascota = mascotaJugadorObjeto.x;
+  const derechaMascota = mascotaJugadorObjeto.x + mascotaJugadorObjeto.ancho;
+  
+  if(
+    abajoMascota < arribaEnemigo||
+    arribaMascota > abajoEnemigo||
+    derechaMascota < izquierdaEnemigo||
+    izquierdaMascota > derechaEnemigo
+  ){
+    return;
+  }
+
+  detenerMovimiento();
+  clearInterval(intervalo)
+  console.log('Se detecto una colision');
+  sectionVerMapa.style.display = 'none';
+  sectionSeleccionarAtaque.style.display = 'flex';
+  seleccionarMascotaEnemigo(enemigo);
 }
 
 // --------------------------------OTROS----------------------------------------
