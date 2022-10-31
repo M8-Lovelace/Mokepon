@@ -3,11 +3,17 @@ const cors = require("cors")
 
 const app = express()
 
+// hostname:port
+// http://machine:8080
+app.use(express.static("public"))
+// Evitar los errores de cors
 app.use(cors())
+// Habilitar post en formato json
 app.use(express.json())
 
 const jugadores = []
 
+// Clases para el programa
 class Jugador {
   constructor(id) {
     this.id = id
@@ -20,6 +26,10 @@ class Jugador {
   actualizarPosicion(x, y) {
     this.x = x
     this.y = y
+  }
+
+  asignarAtaques(ataques) {
+    this.ataques = ataques
   }
 }
 
@@ -77,18 +87,23 @@ app.post("/mokepon/:jugadorId/posicion", (req, res) => {
 
 app.post("/mokepon/:jugadorId/ataques", (req, res) => {
   const jugadorId = req.params.jugadorId || ""
-  const nombre = req.body.mokepon || ""
-  const mokepon = new Mokepon(nombre)
+  const ataques = req.body.ataques || []
   
   const jugadorIndex = jugadores.findIndex((jugador) => jugadorId === jugador.id)
 
   if (jugadorIndex >= 0) {
-    jugadores[jugadorIndex].asignarMokepon(mokepon)
+    jugadores[jugadorIndex].asignarAtaques(ataques)
   }
-  
-  console.log(jugadores)
-  console.log(jugadorId)
+
   res.end()
+})
+
+app.get("/mokepon/:jugadorId/ataques", (req, res) => {
+  const jugadorId = req.params.jugadorId || ""
+  const jugador = jugadores.find((jugador) => jugador.id === jugadorId)
+  res.send({
+    ataques: jugador.ataques || []
+  })
 })
 
 app.listen(8080, () => {
