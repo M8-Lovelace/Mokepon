@@ -1,5 +1,6 @@
 // @ts- check
 // -------------------------Constantes Globales---------------------------------
+const URL = "https://mokepon-pro.herokuapp.com"
 const sectionSeleccionarAtaque = document.getElementById("seleccionar-ataque");
 const sectionReiniciar = document.getElementById("reiniciar");
 const botonMascotaJugador = document.getElementById("boton-mascota");
@@ -173,7 +174,7 @@ function iniciarJuego() {
 }
 
 function unirseAlJuego() {
-  fetch("http://127.0.0.1:8080/unirse").then(function (res) {
+  fetch(`${URL}/unirse`).then(function (res) {
     if (res.ok) {
       res.text().then(function (respuesta) {
         console.log(respuesta);
@@ -210,7 +211,7 @@ function seleccionarMascotaJugador() {
   iniciarMapa();
 }
 function seleccionarMokepon(mascotaJugador) {
-  fetch(`http://127.0.0.1:8080/mokepon/${jugadorId}`, {
+  fetch(`${URL}/mokepon/${jugadorId}`, {
     method: "post",
     headers: {
       "Content-Type": "application/json",
@@ -273,7 +274,7 @@ function secuenciaAtaque() {
 }
 
 function enviarAtaques() {
-  fetch(`http://127.0.0.1:8080/mokepon/${jugadorId}/ataques`, {
+  fetch(`${URL}/mokepon/${jugadorId}/ataques`, {
     method: "post",
     headers: {
       "Content-Type": "application/json",
@@ -287,7 +288,7 @@ function enviarAtaques() {
 }
 
 function obtenerAtaques() {
-  fetch(`http://127.0.0.1:8080/mokepon/${enemigoId}/ataques`).then(function (
+  fetch(`${URL}/mokepon/${enemigoId}/ataques`).then(function (
     res
   ) {
     if (res.ok) {
@@ -430,7 +431,7 @@ function pintarCanvas() {
 }
 
 function enviarPosicion(x, y) {
-  fetch(`http://127.0.0.1:8080/mokepon/${jugadorId}/posicion`, {
+  fetch(`${URL}/mokepon/${jugadorId}/posicion`, {
     method: "post",
     headers: {
       "Content-Type": "application/json",
