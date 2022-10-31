@@ -1,5 +1,8 @@
-const express = require("express")
-const cors = require("cors")
+import express from "express"
+import cors from "cors"
+import dotenv from "dotenv"
+
+dotenv.config()
 
 const app = express()
 
@@ -11,6 +14,7 @@ app.use(cors())
 // Habilitar post en formato json
 app.use(express.json())
 
+const PORT = process.env.PORT || 8080
 const jugadores = []
 
 // Clases para el programa
@@ -106,6 +110,6 @@ app.get("/mokepon/:jugadorId/ataques", (req, res) => {
   })
 })
 
-app.listen(8080, () => {
-  console.log("Servidor funcionando")
+app.listen(PORT, () => {
+  console.log("Servidor funcionando en el puerto", PORT)
 })

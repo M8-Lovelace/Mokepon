@@ -2,9 +2,10 @@
   "name": "mokepon",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "type":"module",
+  "main": "init.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node init.js"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,7 @@
   "homepage": "https://github.com/J6-Lovelace/Mokepon#readme",
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
     "express": "^4.18.2"
   }
 }

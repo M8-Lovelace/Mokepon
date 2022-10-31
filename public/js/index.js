@@ -173,7 +173,7 @@ function iniciarJuego() {
 }
 
 function unirseAlJuego() {
-  fetch("http://machine:8080/unirse").then(function (res) {
+  fetch("http://127.0.0.1:8080/unirse").then(function (res) {
     if (res.ok) {
       res.text().then(function (respuesta) {
         console.log(respuesta);
@@ -210,7 +210,7 @@ function seleccionarMascotaJugador() {
   iniciarMapa();
 }
 function seleccionarMokepon(mascotaJugador) {
-  fetch(`http://machine:8080/mokepon/${jugadorId}`, {
+  fetch(`http://127.0.0.1:8080/mokepon/${jugadorId}`, {
     method: "post",
     headers: {
       "Content-Type": "application/json",
@@ -273,7 +273,7 @@ function secuenciaAtaque() {
 }
 
 function enviarAtaques() {
-  fetch(`http://machine:8080/mokepon/${jugadorId}/ataques`, {
+  fetch(`http://127.0.0.1:8080/mokepon/${jugadorId}/ataques`, {
     method: "post",
     headers: {
       "Content-Type": "application/json",
@@ -287,7 +287,7 @@ function enviarAtaques() {
 }
 
 function obtenerAtaques() {
-  fetch(`http://machine:8080/mokepon/${enemigoId}/ataques`).then(function (
+  fetch(`http://127.0.0.1:8080/mokepon/${enemigoId}/ataques`).then(function (
     res
   ) {
     if (res.ok) {
@@ -430,7 +430,7 @@ function pintarCanvas() {
 }
 
 function enviarPosicion(x, y) {
-  fetch(`http://machine:8080/mokepon/${jugadorId}/posicion`, {
+  fetch(`http://127.0.0.1:8080/mokepon/${jugadorId}/posicion`, {
     method: "post",
     headers: {
       "Content-Type": "application/json",
@@ -445,9 +445,11 @@ function enviarPosicion(x, y) {
         console.log(enemigos);
         mokeponesEnemigos = enemigos.map(function (enemigo) {
           let mokeponEnemigo = null;
-          const mokeponNombre = enemigo.mokepon.nombre || "";
-
-          if (mokeponNombre === "Hipodoge") {
+          
+          if (enemigo.mokepon && enemigo.mokepon.nombre){
+            const mokeponNombre = enemigo.mokepon.nombre || ""
+          
+            if (mokeponNombre === "Hipodoge") {
             mokeponEnemigo = new Mokepon(
               "Hipodoge",
               "./assets/img/hipodoge.png",
@@ -455,7 +457,7 @@ function enviarPosicion(x, y) {
               "./assets/img/hipodoge2.png",
               enemigo.id
             );
-          } else if (mokeponNombre === "Capipepo") {
+            } else if (mokeponNombre === "Capipepo") {
             mokeponEnemigo = new Mokepon(
               "Capipepo",
               "./assets/img/capipepo.png",
@@ -463,7 +465,7 @@ function enviarPosicion(x, y) {
               "./assets/img/capipepo2.png",
               enemigo.id
             );
-          } else {
+            } else {
             mokeponEnemigo = new Mokepon(
               "Ratigueya",
               "./assets/img/ratigueya.png",
@@ -471,12 +473,13 @@ function enviarPosicion(x, y) {
               "./assets/img/ratigueya2.png",
               enemigo.id
             );
+            }
+            
+            mokeponEnemigo.x = enemigo.x;
+            mokeponEnemigo.y = enemigo.y;
+            
+            return mokeponEnemigo;
           }
-
-          mokeponEnemigo.x = enemigo.x;
-          mokeponEnemigo.y = enemigo.y;
-
-          return mokeponEnemigo;
         });
       });
     }
